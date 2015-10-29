@@ -3,10 +3,11 @@ var fs = require('fs');
 var prompt = require('prompt');
 var q = require('q');
 
-// reading args...
-// console.log(process.argv);
+var words = [];
 
-readFileToArray().then(function(arr) { console.log(arr); });
+readFileToArray()
+  .then(shuffleArray)
+  .then(function(arr) { words = arr; });
 
 function readFileToArray() {
   var deferred = q.defer();
@@ -14,22 +15,28 @@ function readFileToArray() {
   try {
     fs.readFile('enable1.txt', 'utf8', function(err, data) {
       if(err) { deferred.reject(err); }
-      else { deferred.resolve(data.split('\n')); }
+      else { deferred.resolve(data.replace(/(\r)/gm, '').split('\n')); }
     });
   } catch(err) { deferred.reject(err); }
 
   return deferred.promise;
 }
 
-function shuffle(array) {
-  for (var i = array.length -1; i> 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
+function shuffleArray(array) {
+  var deferred = q.defer();
 
-  return array;
+  try {
+    for (var i = array.length -1; i> 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    deferred.resolve(array);
+  } catch(err) { deferred.reject(err); }
+
+  return deferred.promise;
 }
 
 
