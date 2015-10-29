@@ -1,0 +1,66 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red12\green98\blue201;\red255\green255\blue255;
+\red62\green132\blue224;}
+\margl1440\margr1440\vieww19540\viewh14800\viewkind0
+\deftab720
+\pard\pardeftab720\sl400\sa100
+
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The popular video games 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Fallout 3
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  and 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Fallout: New Vegas
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  have {\field{\*\fldinst{HYPERLINK "http://gamewiki.net/Fallout_3/Hacking_Guide"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 \outl0\strokewidth0 \strokec3 a computer "hacking" minigame}} where the player must correctly guess the correct password from a list of same-length words. Your challenge is to implement this game yourself.\
+The game operates similarly to the classic board game {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Mastermind_(board_game)"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 \outl0\strokewidth0 \strokec3 Mastermind}}. The player has only 4 guesses and on each incorrect guess the computer will indicate how many letter 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 positions
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  are correct.\
+For example, if the password is MIND and the player guesses MEND, the game will indicate that 3 out of 4 positions are correct (M_ND). If the password is COMPUTE and the player guesses PLAYFUL, the game will report 0/7. While some of the letters match, they're in the wrong position.\
+Ask the player for a difficulty (very easy, easy, average, hard, very hard), then present the player with 5 to 15 words of the same length. The length can be 4 to 15 letters. More words and letters make for a harder puzzle. The player then has 4 guesses, and on each incorrect guess indicate the number of correct positions.\
+Here's an example game:\
+\pard\pardeftab720\sl342
+
+\f1\fs24 \cf2 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Difficulty (1-5)? 3\
+SCORPION\
+FLOGGING\
+CROPPERS\
+MIGRAINE\
+FOOTNOTE\
+REFINERY\
+VAULTING\
+VICARAGE\
+PROTRACT\
+DESCENTS\
+Guess (4 left)? migraine\
+0/8 correct\
+Guess (3 left)? protract\
+2/8 correct\
+Guess (2 left)? croppers\
+8/8 correct\
+You win!\
+\pard\pardeftab720\sl400\sa100
+
+\f0\fs28 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 You can draw words from our favorite dictionary file: {\field{\*\fldinst{HYPERLINK "http://code.google.com/p/dotnetperls-controls/downloads/detail?name=enable1.txt"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 \outl0\strokewidth0 \strokec3 enable1.txt}}. Your program should completely ignore case when making the position checks.\
+There may be ways to increase the difficulty of the game, perhaps even making it impossible to guarantee a solution, based on your particular selection of words. For example, your program could supply words that have little letter position overlap so that guesses reveal as little information to the player as possible.\
+\pard\pardeftab720\sl444\sa266
+
+\fs32 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Credit\
+\pard\pardeftab720\sl400
+
+\fs28 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 This challenge was created by user {\field{\*\fldinst{HYPERLINK "https://www.reddit.com/u/skeeto"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 \outl0\strokewidth0 \strokec3 /u/skeeto}}. If you have any challenge ideas please share them on{\field{\*\fldinst{HYPERLINK "https://www.reddit.com/r/dailyprogrammer_ideas"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 \outl0\strokewidth0 \strokec3 /r/dailyprogrammer_ideas}} and there's a good chance we'll use them.\
+}
