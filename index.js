@@ -6,19 +6,29 @@ var print = require('./services/printer');
 var words = require('./services/wordservice');
 
 var choices = [];
-var answer = null;
+var password = null;
 var wordOptions = { length: 5, count: 5 };
 
 print.welcome();
-
-words.get(wordOptions, function(words) {
-  choices = words;
-  secret = choices[Math.floor(Math.random() * choices.length)];
-
-  print.wordbank(choices);
-});
+initialize()
+  .then(function() { print.wordbank(choices); });
 
 
+function initialize() {
+  var getWords = q.defer();
+
+  _getWordsAndPassword(function() { getWords.resolve(); });
+
+  return q.all([getWords.promise]);
+}
+
+function _getWordsAndPassword(cb) {
+  words.get(wordOptions, function(words) {
+    choices = words;
+    password = choices[Math.floor(Math.random() * choices.length)];
+    cb();
+  });
+}
 
 // var answer = 'awesome';
 // var guesses = [];
