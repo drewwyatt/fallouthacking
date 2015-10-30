@@ -36,7 +36,7 @@ function _filter(args) {
 
   var count = 0;
   var filtered = args.array.filter(function(w) {
-    if (w.length === args.length && count <= args.count) {
+    if (w.length === args.length && count < args.count) {
       count++;
       return true;
     }
