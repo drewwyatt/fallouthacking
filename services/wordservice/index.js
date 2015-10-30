@@ -6,10 +6,11 @@ module.exports = new Words();
 function Words() {
   this.get = function(options, cb) {
     this.readFileToArray(options)
-      .then(this.shuffleArray.bind(this))
-      .then(this.filter.bind(this))
+      .then(this.shuffleArray)
+      .then(this.filter)
+      .then(this.upperCase)
       .then(function(w) {
-        cb(w);
+        cb(w.array);
       })
       .catch(function(e) {
         cb(null, e);
@@ -26,7 +27,8 @@ function Words() {
         return true;
       }
     });
-    deferred.resolve(filtered);
+    args.array = filtered;
+    deferred.resolve(args);
 
     return deferred.promise;
   };
@@ -48,7 +50,18 @@ function Words() {
     }
 
     return deferred.promise;
-  }
+  };
+
+  this.upperCase = function(args) {
+    var deferred = q.defer();
+
+    for(var i=0; i<args.array.length; i++) {
+      args.array[i] = args.array[i].toUpperCase();
+    }
+
+    deferred.resolve(args);
+    return deferred.promise;
+  };
 
   this.shuffleArray = function(args) {
     var deferred = q.defer();
