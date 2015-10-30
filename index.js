@@ -6,12 +6,14 @@ var print = require('./services/printer');
 var words = require('./services/wordservice');
 
 var choices = [];
+var guesses = [];
 var password = null;
 var wordOptions = { length: 5, count: 5 };
 
 print.welcome();
 initialize()
-  .then(_showWordBank);
+  .then(_showWordBank)
+  .then(_promptForGuesses);
 
 
 function initialize() {
@@ -39,22 +41,18 @@ function _showWordBank() {
   return deferred.promise;
 }
 
-// var answer = 'awesome';
-// var guesses = [];
-// function promptForGuess(deferred) {
-//   deferred = (deferred === undefined) ? q.defer() : deferred;
-//
-//   prompt.start();
-//   prompt.get('guess', function(err, response) {
-//     guesses.push(response.guess);
-//     if(response.guess === answer) {
-//       deferred.resolve();
-//     }  else {
-//       promptForGuess(deferred);
-//     }
-//   });
-//
-//   return deferred.promise;
-// }
-//
-// promptForGuess().then(function() { console.log('Done!', guesses); });
+function _promptForGuesses(deferred) {
+  deferred = (deferred === undefined) ? q.defer() : deferred;
+
+  prompt.start();
+  prompt.get('guess', function(err, response) {
+    guesses.push(response.guess.toUpperCase());
+    if(response.guess.toUpperCase() === password) {
+      deferred.resolve();
+    }  else {
+      _promptForGuesses(deferred);
+    }
+  });
+
+  return deferred.promise;
+}
