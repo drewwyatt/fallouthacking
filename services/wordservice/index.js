@@ -5,7 +5,7 @@ module.exports = new WordService();
 
 /**
  * Expected Options
- * ------------------------
+ * ------------------------------------->
  * { length: Number, count: Number }
  */
 

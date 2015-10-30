@@ -1,13 +1,15 @@
 #! /usr/bin/env node
 var prompt = require('prompt');
 var q = require('q');
+
+var print = require('./services/printer');
 var words = require('./services/wordservice');
 
 var choices = [];
 var answer = null;
 var wordOptions = { length: 5, count: 5 };
 
-console.log('Let\'s play a game.');
+print.welcome();
 
 words.get(wordOptions, function(words) {
   choices = words;
