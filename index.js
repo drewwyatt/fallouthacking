@@ -7,8 +7,18 @@ var choices = [];
 var answer = null;
 var wordOptions = { length: 5, count: 5 };
 
+console.log('Let\'s play a game.');
+
 words.get(wordOptions, function(words) {
   choices = words;
+  secret = choices[Math.floor(Math.random() * choices.length)];
+
+  console.log('These are the options: ');
+  choices.forEach(function(w) {
+    console.log(' -', w);
+  });
+
+  console.log('The secret answer is:', secret);
 });
 
 
