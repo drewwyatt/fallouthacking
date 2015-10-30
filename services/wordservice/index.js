@@ -51,7 +51,7 @@ function _readFileToArray(args) {
   var deferred = q.defer();
 
   try {
-    fs.readFile('enable1.txt', 'utf8', function(err, data) {
+    fs.readFile('./services/wordservice/enable1.txt', 'utf8', function(err, data) {
       if (err) {
         deferred.reject(err);
       } else {
