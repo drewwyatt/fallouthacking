@@ -8,7 +8,7 @@ var words = require('./services/wordservice');
 var choices = [];
 var guesses = [];
 var password = null;
-var wordOptions = { length: 5, count: 5 };
+var wordOptions = { length: 8, count: 10 };
 
 print.welcome();
 initialize()
@@ -49,6 +49,7 @@ function _promptForGuesses(deferred) {
     var guess = response.guess.toUpperCase();
     guesses.push(guess);
     if(guess === password) {
+      print.correct(guess);
       deferred.resolve();
     }  else {
       print.incorrectWithComparison(guess, password);
