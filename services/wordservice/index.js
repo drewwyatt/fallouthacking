@@ -1,7 +1,7 @@
 var fs = require('fs');
 var q = require('q');
 
-module.exports = new Words();
+module.exports = new WordService();
 
 /**
  * Expected Options
@@ -9,7 +9,7 @@ module.exports = new Words();
  * { length: Number, count: Number }
  */
 
-function Words() {
+function WordService() {
   this.get = _get;
 
   this._filter = _filter;
