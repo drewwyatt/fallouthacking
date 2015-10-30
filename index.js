@@ -1,43 +1,16 @@
 #! /usr/bin/env node
-var fs = require('fs');
 var prompt = require('prompt');
 var q = require('q');
+var words = require('./services/wordservice');
 
-var words = [];
+var choices = [];
+var answer = null;
+var wordOptions = { length: 5, count: 5 };
 
-readFileToArray()
-  .then(shuffleArray)
-  .then(function(arr) { words = arr; });
+words.get(wordOptions, function(words) {
+  choices = words;
+});
 
-function readFileToArray() {
-  var deferred = q.defer();
-
-  try {
-    fs.readFile('enable1.txt', 'utf8', function(err, data) {
-      if(err) { deferred.reject(err); }
-      else { deferred.resolve(data.replace(/(\r)/gm, '').split('\n')); }
-    });
-  } catch(err) { deferred.reject(err); }
-
-  return deferred.promise;
-}
-
-function shuffleArray(array) {
-  var deferred = q.defer();
-
-  try {
-    for (var i = array.length -1; i> 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-
-    deferred.resolve(array);
-  } catch(err) { deferred.reject(err); }
-
-  return deferred.promise;
-}
 
 
 // var answer = 'awesome';
