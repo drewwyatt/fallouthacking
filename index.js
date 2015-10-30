@@ -11,7 +11,7 @@ var wordOptions = { length: 5, count: 5 };
 
 print.welcome();
 initialize()
-  .then(function() { print.wordbank(choices); });
+  .then(_showWordBank);
 
 
 function initialize() {
@@ -28,6 +28,15 @@ function _getWordsAndPassword(cb) {
     password = choices[Math.floor(Math.random() * choices.length)];
     cb();
   });
+}
+
+function _showWordBank() {
+  var deferred = q.defer();
+
+  print.wordbank(choices);
+
+  deferred.resolve();
+  return deferred.promise;
 }
 
 // var answer = 'awesome';
