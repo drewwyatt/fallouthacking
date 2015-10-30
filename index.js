@@ -46,10 +46,12 @@ function _promptForGuesses(deferred) {
 
   prompt.start();
   prompt.get('guess', function(err, response) {
-    guesses.push(response.guess.toUpperCase());
-    if(response.guess.toUpperCase() === password) {
+    var guess = response.guess.toUpperCase();
+    guesses.push(guess);
+    if(guess === password) {
       deferred.resolve();
     }  else {
+      print.incorrectWithComparison(guess, password);
       _promptForGuesses(deferred);
     }
   });
